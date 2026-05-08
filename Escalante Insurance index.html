@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escalante Insurance Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e2d4a;
+      --navy-light: #2d4268;
+      --gold: #e8b84b;
+      --white: #ffffff;
+      --text-muted: #7a8fad;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+      z-index: 10;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 24px 60px;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* --- Logo --- */
+    .logo-wrap {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s 0.0s ease both;
+    }
+    .logo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    /* --- Coming Soon --- */
+    .coming-soon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 9vw, 4.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .coming-soon-es {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 5px;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    /* --- Divider --- */
+    .divider {
+      width: 70px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 28px auto;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    /* --- Offerings two-column --- */
+    .offerings-wrap {
+      width: 100%;
+      animation: fadeUp 0.7s 0.25s ease both;
+      margin-bottom: 10px;
+    }
+    .offerings-header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .offerings-header-line {
+      height: 1px;
+      background: rgba(30,45,74,0.15);
+    }
+    .offerings-header-text {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .offerings-cols {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 24px;
+    }
+
+    .col-divider {
+      background: rgba(30,45,74,0.12);
+      width: 1px;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .col-title {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .col-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(30,45,74,0.07);
+      text-align: left;
+    }
+    .col-item:first-of-type { border-top: 1px solid rgba(30,45,74,0.07); }
+    .col-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .col-text {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+    }
+
+    /* --- Contact --- */
+    .divider2 {
+      width: 70px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 36px auto 32px;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .contact-card {
+      animation: fadeUp 0.7s 0.4s ease both;
+      width: 100%;
+      max-width: 420px;
+      background: var(--navy);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(30,45,74,0.13), 0 4px 16px rgba(30,45,74,0.09);
+    }
+    .contact-card-header {
+      background: var(--gold);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .contact-header-line {
+      width: 3px;
+      height: 38px;
+      background: var(--navy);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .contact-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+    .contact-title {
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      margin-top: 3px;
+    }
+    .contact-body {
+      padding: 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(232,184,75,0.12);
+      border: 1px solid rgba(232,184,75,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .contact-info { display: flex; flex-direction: column; text-align: left; }
+    .contact-label {
+      font-size: 0.54rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .contact-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .contact-value a {
+      color: inherit; text-decoration: none; transition: color 0.2s;
+    }
+    .contact-value a:hover { color: var(--gold); }
+    .contact-row-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0 -28px;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      margin-top: 40px;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+    .footer span { color: var(--gold); margin: 0 8px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .logo-wrap { width: 150px; height: 150px; }
+      .contact-card-header { padding: 16px 20px; }
+      .contact-body { padding: 18px 20px; }
+      .contact-row-divider { margin: 0 -20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="page">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img src="Final_Shield.png" alt="Escalante Insurance Agency" />
+    </div>
+
+    <!-- Coming Soon -->
+    <div class="coming-soon">Coming Soon</div>
+    <div class="coming-soon-es">Próximamente</div>
+
+    <div class="divider"></div>
+
+    <!-- Offerings -->
+    <div class="offerings-wrap">
+      <div class="offerings-header">
+        <div class="offerings-header-line"></div>
+        <div class="offerings-header-text">What we offer</div>
+        <div class="offerings-header-line"></div>
+      </div>
+
+      <div class="offerings-cols">
+        <!-- English -->
+        <div class="col">
+          <div class="col-title">English</div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Home</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Auto</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Life</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Commercial</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">General Liability</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Workers' Comp</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Commercial Auto</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Bonds</div></div>
+        </div>
+
+        <div class="col-divider"></div>
+
+        <!-- Spanish -->
+        <div class="col">
+          <div class="col-title">Español</div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Hogar</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Auto</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Vida</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Comercial</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Responsabilidad General</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Compensación Laboral</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Auto Comercial</div></div>
+          <div class="col-item"><div class="col-dot"></div><div class="col-text">Fianzas</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider2"></div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div class="contact-card-header">
+        <div class="contact-header-line"></div>
+        <div>
+          <div class="contact-name">Daniel Escalante</div>
+          <div class="contact-title">Licensed Insurance Agent · Oregon</div>
+        </div>
+      </div>
+      <div class="contact-body">
+        <div class="contact-item">
+          <div class="contact-icon">✆</div>
+          <div class="contact-info">
+            <span class="contact-label">Phone / Teléfono</span>
+            <span class="contact-value"><a href="tel:+15034597282">(503) 459-7282</a></span>
+          </div>
+        </div>
+        <div class="contact-row-divider"></div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <span class="contact-value"><a href="mailto:daniel@escalanteagency.com">daniel@escalanteagency.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Escalante Insurance Agency <span>·</span> Oregon
+    </div>
+
+  </div>
+</body>
+</html>
